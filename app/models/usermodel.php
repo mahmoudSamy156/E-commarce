@@ -13,4 +13,5 @@ class UserModel extends BaseQueryDataBase{
     protected $key = 'id';
 
 
+
 }

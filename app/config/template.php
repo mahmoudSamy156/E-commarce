@@ -1,8 +1,11 @@
 <?php
 return[
     'TEMPLATE'=>[
-        'NavBar'            =>LAYOUTS_PATH.'nav.php',
-        'SideBar'            =>LAYOUTS_PATH.'sidebar.php',
+        'Head'            =>LAYOUTS_PATH.'head.layout.php',
+        'Header'            =>LAYOUTS_PATH.'header.layout.php',
+    ],
+    'FOOtER'=>[
+        'Footer'=> LAYOUTS_PATH.'footer.layout.php'
     ],
     'CSS'=>[ 
           'BootStrap'                   =>PATH_CSS.'bootstrap.min.css',

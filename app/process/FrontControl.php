@@ -9,10 +9,13 @@ class FrontControl{
     public $action      = 'home';
     public $param       =   [];
     public $_template;
-    public function __construct(Template $template)
+    private $_auth;
+    
+    public function __construct(Template $template , Authentication $auth)
     {
         $this->_parseurl();
         $this->_template = $template;
+        $this->_auth = $auth;
     }
     private function _parseurl()
     {
@@ -38,20 +41,27 @@ class FrontControl{
     public function dispatch()
     {
         $controllerClassName = 'App\Controllers\\'.$this->controller."Controller";
-        $actionName = $this->action;
+
+
+
+        if( $this->controller == 'login' || $this->controller == 'register' || $this->controller == 'logout' ):
+            $controllerClassName = 'App\Controllers\Auth\\'.$this->controller."Controller";
+        endif;
+        $actionName = $this->action ;
+        if(!class_exists($controllerClassName) || !method_exists($controllerClassName, $actionName)) {
+            $controllerClassName = 'App\Controllers\notfoundController';
+
+        }
+
         $controllers = new $controllerClassName();
-        // if(!class_exists($controllerClassName)):
-        //     $controllers->setController('notfoundController');
-        // endif;
-        
-        // if(!method_exists($controllers,$actionName)):
-        //     $this->action = $actionName='notfund';
-        // endif;
+
+
 
         $controllers->setController($this->controller);
         $controllers->setAction($this->action);
         $controllers->setParam($this->param);
         $controllers->setTemplate($this->_template);
+        $controllers->setauthh($this->_auth);
 
         $controllers->$actionName();
 

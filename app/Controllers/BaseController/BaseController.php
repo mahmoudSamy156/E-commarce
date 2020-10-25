@@ -5,8 +5,9 @@ class BaseController{
 
     private $controller;
     private $action;
-    private $param;
+    protected $param;
     private $template;
+    protected $Auth;
 
     protected $data =[];
 
@@ -32,17 +33,23 @@ class BaseController{
         $this->template = $templateName;
     }
 
+    public function setauthh($auth){
+        $this->Auth = $auth;
+    }
+
+
+
 
     public function  __view($folder,$file){
-     
-    
-
-        extract($this->data);
-
         $view =  PATH_VIEWS.$folder.DS.$file.'.view.php';
         if(file_exists($view)):
-            return require $view;
+            $this->template->renderAppStart();
+            extract($this->data);
+             require $view;
+            $this->template->renderAppEnd();
         endif;
     }
+
+   
 
 }

@@ -3,6 +3,7 @@
 
 define('DS',DIRECTORY_SEPARATOR);
 define('APP_PATH',dirname(readlink(__FILE__)).DS.'..'.DS);
+define('TEMPLATE_PATH',dirname(readlink(__FILE__)).DS.'template.php');
 
 define('PATH_VIEWS',APP_PATH.'views'.DS);
 define('PATH_PROCESS',APP_PATH.'process'.DS);
@@ -21,7 +22,6 @@ define('SESSION_HTTP',true);
 define('SESSION_PATH','/');
 define('SESSION_DOMAIN','localhost');
 define('SESSION_SAVE_PATH',APP_PATH.'..'.DS.'sessions');
-
 
 define('PATH_CSS','..'.DS.'..'.DS.'public'.DS);
 define('PATH_JS','..'.DS.'..'.DS.'public'.DS);
